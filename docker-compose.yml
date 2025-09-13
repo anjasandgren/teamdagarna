@@ -1,0 +1,14 @@
+services:
+  teamdagarna:
+    build:
+      context: .                            # Använd hela projektet som build context
+      dockerfile: .devcontainer/Dockerfile  # Dockerfilen
+    container_name: teamdagarna_dev
+    ports:
+      - "4200:4200"                         # Angular dev server
+      # - "5000:5000"                         # Firebase
+    volumes:
+      - .:/usr/src/app                      # Monterar hela projektet
+      - /usr/src/app/node_modules           # Undviker att node_modules på host krockar
+    stdin_open: true
+    tty: true
